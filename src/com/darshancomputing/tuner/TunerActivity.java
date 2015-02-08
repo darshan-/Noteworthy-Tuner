@@ -89,12 +89,13 @@ public class TunerActivity extends Activity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
+                        // TODO: Show name in one color when "close enough" (abs(cents) < n) and another otherwise
                         TextView text = (TextView) findViewById(R.id.pitchInHz);
                         text.setText("" + hz + " Hz");
                         text = (TextView) findViewById(R.id.note);
                         text.setText("" + n.name);
                         text = (TextView) findViewById(R.id.cents);
-                        text.setText("" + n.centOffset);
+                        text.setText("" + n.cents);
                     }
                 });                        
             }

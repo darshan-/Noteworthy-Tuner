@@ -23,7 +23,7 @@ package com.darshancomputing.tuner;
 */
 public class Note {
     public String name;
-    public float centOffset;
+    public float cents;
 
     private static String[] notes = {"A", "A♯ / B♭", "B", "C", "C♯ / D♭", "D", "D♯ / E♭", "E", "F", "F♯ / G♭", "G", "G♯ / A♭"};
 
@@ -38,15 +38,15 @@ public class Note {
     public void fromHz(float hz) {
         if (hz < 0) {
             name = "N/A";
-            centOffset = 0;
+            cents = 0;
             return;
         }
         
         float semi = log2(java.lang.Math.pow(hz / 440.0, 12.0));
         int roundedSemi = java.lang.Math.round(semi);
-        int mod = (roundedSemi % 12 + 12) % 12; // Modules can be negative in Java
-        name = notes[mod];
-        centOffset = (semi - roundedSemi) * 100;
+        int note = (roundedSemi % 12 + 12) % 12; // Modules can be negative in Java
+        name = notes[note];
+        cents = (semi - roundedSemi) * 100;
     }
 
     private float log2(double n) {
