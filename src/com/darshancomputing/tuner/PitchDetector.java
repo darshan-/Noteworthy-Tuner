@@ -27,7 +27,7 @@ import be.tarsos.dsp.io.TarsosDSPAudioInputStream;
 import be.tarsos.dsp.io.android.AndroidAudioInputStream;
 import be.tarsos.dsp.pitch.PitchProcessor;
 
-public class Tuner {
+public class PitchDetector {
     public AudioDispatcher dispatcher;
 
     private AudioRecord audioInputStream;
@@ -40,7 +40,7 @@ public class Tuner {
      * audioBufferSize: The size of the audio buffer (in samples).
      * bufferOverlap:   The size of the overlap (in samples).
      */
-    public Tuner(int sampleRate, int audioBufferSize, int bufferOverlap, PitchProcessor pp) {
+    public PitchDetector(int sampleRate, int audioBufferSize, int bufferOverlap, PitchProcessor pp) {
         mSampleRate = sampleRate;
         mAudioBufferSize = audioBufferSize;
         mBufferOverlap = bufferOverlap;

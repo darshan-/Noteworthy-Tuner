@@ -79,7 +79,7 @@ public class TunerActivity extends Activity {
 
     private final Handler mHandler = new Handler();
 
-    private Tuner tuner;
+    private PitchDetector detector;
     private PitchProcessor pp;
 
     @Override
@@ -110,7 +110,7 @@ public class TunerActivity extends Activity {
 
         pp = new PitchProcessor(PitchEstimationAlgorithm.FFT_YIN, 22050, 1024, pdh);
 
-        tuner = new Tuner(22050, 1024, 0, pp);
+        detector = new PitchDetector(22050, 1024, 0, pp);
     }
 
     @Override
@@ -122,14 +122,14 @@ public class TunerActivity extends Activity {
     protected void onResume() {
         super.onResume();
 
-        tuner.start();
+        detector.start();
     }
 
     @Override
     protected void onPause() {
         super.onPause();
 
-        tuner.stop();
+        detector.stop();
     }
 
     @Override
