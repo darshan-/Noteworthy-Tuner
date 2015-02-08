@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.darshancomputing.tuner"
+    android:sharedUserId="com.darshancomputing.tuner"
+    android:installLocation="auto"
+    android:versionCode="1"
+    android:versionName="0.0.1-dev"
+>
+  <application
+      android:label="@string/app_full_name"
+      android:hardwareAccelerated="true"
+      android:process="com.darshancomputing.tuner"
+  >
+    <activity
+        android:name=".TunerActivity"
+        android:label="@string/app_full_name"
+        android:screenOrientation="unspecified"
+        android:launchMode="singleTop"
+    >
+      <intent-filter>
+        <action android:name="android.intent.action.MAIN" />
+        <category android:name="android.intent.category.LAUNCHER" />
+      </intent-filter>
+    </activity>
+
+  </application>
+
+  <uses-sdk
+      android:minSdkVersion="3"
+      android:targetSdkVersion="21"
+  />
+
+  <uses-feature android:name="android.hardware.touchscreen" android:required="false" />
+
+  <uses-permission android:name="android.permission.RECORD_AUDIO" />
+
+  <supports-screens
+      android:smallScreens="true"
+      android:normalScreens="true"
+      android:largeScreens="true"
+      android:anyDensity="true"
+  />
+</manifest>
