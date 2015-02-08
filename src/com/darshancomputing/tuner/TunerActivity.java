@@ -87,8 +87,9 @@ public class TunerActivity extends Activity {
                     @Override
                     public void run() {
                         TextView text = (TextView) findViewById(R.id.pitchInHz);
-                        text.setText("" + pitchInHz + " Hz" +
-                                     " (" + pitchToNote(pitchInHz) + ")");
+                        text.setText("" + pitchInHz + " Hz");
+                        text = (TextView) findViewById(R.id.note);
+                        text.setText("" + pitchToNote(pitchInHz));
                     }
                 });                        
             }
@@ -100,14 +101,6 @@ public class TunerActivity extends Activity {
     }
 
     /*
-      Math.log2((220.01 / 440.0)**12.0) is Ruby for how many half steps above (positive) or below (negative)
-      440.0 the pitch is.
-      * What should we reference from?
-      * Something central?
-      * A central A, since it is exact?
-      * The lowest value we recognize?
-
-
       Library's apparent range of what it can recognize:
       Low:  F1      @ ~43.6535
       High: G♯7/A♭7 @ ~3322.44
