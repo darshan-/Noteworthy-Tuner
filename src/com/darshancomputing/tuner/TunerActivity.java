@@ -53,6 +53,8 @@ import be.tarsos.dsp.pitch.PitchDetectionResult;
 import be.tarsos.dsp.pitch.PitchProcessor;
 import be.tarsos.dsp.pitch.PitchProcessor.PitchEstimationAlgorithm;
 
+// TODO: Keep screen on (past normal inactivity timeout)
+//   (Will Activity still get paused on power button press?)
 public class TunerActivity extends Activity {
     private SharedPreferences settings;
     private SharedPreferences sp_store;
@@ -92,21 +94,20 @@ public class TunerActivity extends Activity {
                     public void run() {
                         // TODO: Show name in one color when "close enough" (abs(cents) < n) and another otherwise
                         TextView text = (TextView) findViewById(R.id.pitchInHz);
-                        text.setText("" + hz + " Hz");
+                        text.setText("" + (java.lang.Math.round(hz * 10) / 10.0) + " Hz");
                         text = (TextView) findViewById(R.id.note);
-                        text.setText("" + n.name);
-                        text = (TextView) findViewById(R.id.cents);
-                        text.setText("" + n.cents);
+                        text.setText("" + n.getName());
+                        //text = (TextView) findViewById(R.id.cents);
+                        //text.setText("" + n.getCents());
                         HorizontalCentView centView = (HorizontalCentView) findViewById(R.id.cent_view);
-                        centView.setCents(n.cents);
+                        centView.setCents(n.getCents());
                     }
                 });                        
             }
         };
 
-        pp = new PitchProcessor(PitchEstimationAlgorithm.FFT_YIN, 22050, 1024, pdh);
-
-        detector = new PitchDetector(22050, 1024, 0, pp);
+        pp = new PitchProcessor(PitchEstimationAlgorithm.FFT_YIN, 22050, 2048, pdh);
+        detector = new PitchDetector(22050, 2048, 0, pp);
     }
 
     @Override

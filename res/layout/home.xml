@@ -38,11 +38,11 @@
       android:enabled="false"
   />
 
-  <TextView android:id="@+id/cents"
+  <!--TextView android:id="@+id/cents"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:textSize="30sp"
             android:textColor="#eee"
-  />
+  /-->
 </LinearLayout>

@@ -22,8 +22,10 @@ package com.darshancomputing.tuner;
   (TODO: Look into this and tweak library code?)
 */
 public class Note {
-    public String name;
-    public float cents;
+    private String name;
+    private float cents;
+    private float lastHz;
+    private float lastCents; // Last actual measured cents, so we don't keep averaging with last average
 
     private static String[] notes = {"A", "A♯ / B♭", "B", "C", "C♯ / D♭", "D", "D♯ / E♭", "E", "F", "F♯ / G♭", "G", "G♯ / A♭"};
 
@@ -35,6 +37,15 @@ public class Note {
         fromHz(hz);
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public float getCents() {
+        return cents;
+    }
+
+    // Sets / updates note; if same note (same name and same octave), averages last and current cents
     public void fromHz(float hz) {
         if (hz < 0) {
             name = "N/A";
@@ -45,8 +56,18 @@ public class Note {
         float semi = log2(java.lang.Math.pow(hz / 440.0, 12.0));
         int roundedSemi = java.lang.Math.round(semi);
         int note = (roundedSemi % 12 + 12) % 12; // Modules can be negative in Java
-        name = notes[note];
-        cents = (semi - roundedSemi) * 100;
+        String newName = notes[note];
+        float newCents = (semi - roundedSemi) * 100;
+
+        if (newName.equals(name) && java.lang.Math.abs(hz - lastHz) / hz < 0.5) {
+            cents = (lastCents + newCents) / 2;
+        } else {
+            cents = newCents;
+        }
+
+        name = newName;
+        lastHz = hz;
+        lastCents = newCents;
     }
 
     private float log2(double n) {
