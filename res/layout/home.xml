@@ -9,7 +9,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:textSize="40sp"
+            android:textSize="48sp"
             android:textColor="#fff"
   />
   <TextView android:id="@+id/pitchInHz"
@@ -18,5 +18,12 @@
             android:gravity="center"
             android:textSize="20sp"
             android:textColor="#ccc"
+  />
+  <TextView android:id="@+id/cents"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="30sp"
+            android:textColor="#eee"
   />
 </LinearLayout>

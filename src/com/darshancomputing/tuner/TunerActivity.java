@@ -79,17 +79,22 @@ public class TunerActivity extends Activity {
 
         // From http://0110.be/posts/TarsosDSP_on_Android_-_Audio_Processing_in_Java_on_Android
 
+        final Note n = new Note();
+
         PitchDetectionHandler pdh = new PitchDetectionHandler() {
             @Override
             public void handlePitch(PitchDetectionResult result, AudioEvent e) {
-                final float pitchInHz = result.getPitch();
+                final float hz = result.getPitch();
+                n.fromHz(hz);
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         TextView text = (TextView) findViewById(R.id.pitchInHz);
-                        text.setText("" + pitchInHz + " Hz");
+                        text.setText("" + hz + " Hz");
                         text = (TextView) findViewById(R.id.note);
-                        text.setText("" + pitchToNote(pitchInHz));
+                        text.setText("" + n.name);
+                        text = (TextView) findViewById(R.id.cents);
+                        text.setText("" + n.centOffset);
                     }
                 });                        
             }
@@ -98,23 +103,6 @@ public class TunerActivity extends Activity {
         pp = new PitchProcessor(PitchEstimationAlgorithm.FFT_YIN, 22050, 1024, pdh);
 
         detector = new PitchDetector(22050, 1024, 0, pp);
-    }
-
-    /*
-      Library's apparent range of what it can recognize:
-      Low:  F1      @ ~43.6535
-      High: G♯7/A♭7 @ ~3322.44
-    */
-    private String pitchToNote(float hz) {
-        if (hz < 0) { return "N/A"; }
-        String[] notes = {"A", "A♯/B♭", "B", "C", "C♯/D♭", "D", "D♯/E♭", "E", "F", "F♯/G♭", "G", "G♯/A♭"};
-        float semi = log2(java.lang.Math.pow(hz / 440.0, 12.0));
-        int mod = (java.lang.Math.round(semi) % 12 + 12) % 12; // Modules can be negative in Java
-        return notes[mod];
-    }
-
-    private float log2(double n) {
-        return (float) (java.lang.Math.log(n) / java.lang.Math.log(2));
     }
 
     @Override
