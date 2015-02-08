@@ -19,6 +19,25 @@
             android:textSize="20sp"
             android:textColor="#ccc"
   />
+  <!--include layout="@layout/horizontal_cent_view"
+           android:id="@+id/horizontal_cent_view"
+           android:layout_width="fill_parent"
+           android:layout_height="wrap_content"
+  /-->
+  <com.darshancomputing.tuner.HorizontalCentView
+      android:id="@+id/cent_view"
+      android:layout_width="fill_parent"
+      android:layout_height="40dp"
+      android:paddingTop="6dp"
+      android:paddingBottom="6dp"
+      android:paddingLeft="11dp"
+      android:paddingRight="11dp"
+      android:scaleType="fitCenter"
+      android:gravity="center"
+      android:src="@drawable/horizontal_cent_background"
+      android:enabled="false"
+  />
+
   <TextView android:id="@+id/cents"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"

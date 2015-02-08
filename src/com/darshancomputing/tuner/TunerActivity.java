@@ -86,6 +86,7 @@ public class TunerActivity extends Activity {
             public void handlePitch(PitchDetectionResult result, AudioEvent e) {
                 final float hz = result.getPitch();
                 n.fromHz(hz);
+
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
@@ -96,6 +97,8 @@ public class TunerActivity extends Activity {
                         text.setText("" + n.name);
                         text = (TextView) findViewById(R.id.cents);
                         text.setText("" + n.cents);
+                        HorizontalCentView centView = (HorizontalCentView) findViewById(R.id.cent_view);
+                        centView.setCents(n.cents);
                     }
                 });                        
             }
