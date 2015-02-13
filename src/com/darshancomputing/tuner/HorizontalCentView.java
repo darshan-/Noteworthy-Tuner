@@ -18,6 +18,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.os.Handler;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.ImageView;
@@ -27,6 +28,32 @@ public class HorizontalCentView extends ImageView {
     private Paint paint;
     private int width, height;
     private float cents;
+    private float animCents;
+
+    private final Handler mHandler = new Handler();
+    private int animDuration;
+    private long animStartMs, animEndMs;
+    private float animStartCents, animEndCents;
+    private boolean animating;
+
+    private final Runnable animate = new Runnable() {
+        public void run() {
+            long now = System.currentTimeMillis();
+            System.out.println("........... " + now + ": old animCents: " + animCents);
+            float timePos = (float) (now - animStartMs) / (animEndMs - animStartMs);
+            System.out.println("  ...... timePos: " + timePos);
+            System.out.println("  ...... animStartCents: " + animStartCents);
+            System.out.println("  ...... animEndCents: " + animEndCents);
+            animCents = animStartCents + (animEndCents - animStartCents) * timePos;
+            System.out.println("  ...... new animCents: " + animCents);
+            invalidate();
+
+            if (now < animEndMs)
+                mHandler.postDelayed(animate, 20);
+            else
+                endAnim();
+        }
+    };
 
     public HorizontalCentView(Context c) {
         super(c);
@@ -73,11 +100,17 @@ public class HorizontalCentView extends ImageView {
     }
 
     private void drawNeedle(Canvas canvas) {
+        float c;
+        if (animating)
+            c = animCents;
+        else
+            c = cents;
+
         paint.setColor(Color.YELLOW);
         paint.setStrokeWidth(10);
 
         float x = width / 2;
-        x += cents / 100 * width;
+        x += c / 100 * width;
 
         canvas.drawLine(x, 0 + 15, x, height - 15, paint);
     }
@@ -89,8 +122,36 @@ public class HorizontalCentView extends ImageView {
         canvas.drawLine(width / 2, 0 + 10, width / 2, height - 10, paint);
     }
 
+    private void startAnim(float c) {
+        endAnim();
+        animating = true;
+        animStartMs = System.currentTimeMillis();
+        animEndMs = animStartMs + animDuration;
+        animStartCents = cents;
+        animEndCents = c;
+        animCents = cents; // In case View is invalidated before animate.run() is called
+        System.out.println("********* Animating from " + animStartCents + " to " + animEndCents);
+        mHandler.post(animate);
+    }
+
+    private void endAnim() {
+        animating = false;
+        mHandler.removeCallbacks(animate);
+    }
+
     public void setCents(float c) {
+        if (c == cents) return;
+
+        if (animDuration <= 0)
+            invalidate();
+        else
+            startAnim(c);
+
+        // Don't set until after calling startAnim(); it needs old value of cents
         cents = c;
-        invalidate();
+    }
+
+    public void setAnimationDuration(int ms) {
+        animDuration = ms;
     }
 }

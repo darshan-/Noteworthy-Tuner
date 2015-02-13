@@ -69,6 +69,14 @@ public class TunerActivity extends Activity {
     private PitchDetector detector;
     private PitchProcessor pp;
 
+    private static final int SAMPLE_RATE = 48000;
+    private static final int SAMPLES = SAMPLE_RATE / 10;
+
+    // AMDF and FFT_PITCH are unworkably slow or don't work at all
+    private static final PitchEstimationAlgorithm ALGORITHM = PitchEstimationAlgorithm.FFT_YIN;
+    //private static final PitchEstimationAlgorithm ALGORITHM = PitchEstimationAlgorithm.DYNAMIC_WAVELET;
+    //private static final PitchEstimationAlgorithm ALGORITHM = PitchEstimationAlgorithm.MPM;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,6 +86,8 @@ public class TunerActivity extends Activity {
         res = getResources();
         context = getApplicationContext();
         settings = PreferenceManager.getDefaultSharedPreferences(context);
+        HorizontalCentView centView = (HorizontalCentView) findViewById(R.id.cent_view);
+        centView.setAnimationDuration(1000 / (SAMPLE_RATE / SAMPLES));
 
         // From http://0110.be/posts/TarsosDSP_on_Android_-_Audio_Processing_in_Java_on_Android
 
@@ -106,8 +116,8 @@ public class TunerActivity extends Activity {
             }
         };
 
-        pp = new PitchProcessor(PitchEstimationAlgorithm.FFT_YIN, 22050, 2048, pdh);
-        detector = new PitchDetector(22050, 2048, 0, pp);
+        pp = new PitchProcessor(ALGORITHM, SAMPLE_RATE, SAMPLES, pdh);
+        detector = new PitchDetector(SAMPLE_RATE, SAMPLES, 0 /* SAMPLES / 2 */, pp);
     }
 
     @Override
