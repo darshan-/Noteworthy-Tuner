@@ -70,7 +70,7 @@ public class TunerActivity extends Activity {
     private PitchProcessor pp;
 
     private static final int SAMPLE_RATE = 48000;
-    private static final int SAMPLES = SAMPLE_RATE / 10;
+    private static final int SAMPLES = SAMPLE_RATE / 5;
 
     // AMDF and FFT_PITCH are unworkably slow or don't work at all
     private static final PitchEstimationAlgorithm ALGORITHM = PitchEstimationAlgorithm.FFT_YIN;

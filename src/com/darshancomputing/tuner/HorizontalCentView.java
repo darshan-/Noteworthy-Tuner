@@ -49,7 +49,7 @@ public class HorizontalCentView extends ImageView {
             invalidate();
 
             if (now < animEndMs)
-                mHandler.postDelayed(animate, 20);
+                mHandler.postDelayed(animate, 15);
             else
                 endAnim();
         }
