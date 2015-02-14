@@ -14,7 +14,7 @@
   >
     <activity
         android:name=".TunerActivity"
-        android:label="@string/app_full_name"
+        android:label="@string/app_launcher_name"
         android:screenOrientation="unspecified"
         android:launchMode="singleTop"
     >

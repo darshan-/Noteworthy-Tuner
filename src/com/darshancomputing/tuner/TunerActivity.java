@@ -87,6 +87,8 @@ public class TunerActivity extends Activity {
         res = getResources();
         context = getApplicationContext();
         settings = PreferenceManager.getDefaultSharedPreferences(context);
+
+        setTitle(R.string.app_full_name);
         AbstractCentView centView = (AbstractCentView) findViewById(R.id.cent_view);
         centView.setAnimationDuration(1000 / (SAMPLE_RATE / SAMPLES));
         centView.setNeedleColor(Color.GREEN);
