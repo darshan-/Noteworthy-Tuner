@@ -29,6 +29,7 @@ public abstract class AbstractCentView extends ImageView {
     protected int width, height;
     protected float cents;
     protected float animCents;
+    protected int needleColor;
 
     protected final Handler mHandler = new Handler();
     protected int animDuration;
@@ -127,5 +128,9 @@ public abstract class AbstractCentView extends ImageView {
 
     public void setAnimationDuration(int ms) {
         animDuration = ms;
+    }
+
+    public void setNeedleColor(int c) {
+        needleColor = c;
     }
 }

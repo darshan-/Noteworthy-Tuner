@@ -89,6 +89,7 @@ public class TunerActivity extends Activity {
         settings = PreferenceManager.getDefaultSharedPreferences(context);
         AbstractCentView centView = (AbstractCentView) findViewById(R.id.cent_view);
         centView.setAnimationDuration(1000 / (SAMPLE_RATE / SAMPLES));
+        centView.setNeedleColor(Color.GREEN);
 
         // From http://0110.be/posts/TarsosDSP_on_Android_-_Audio_Processing_in_Java_on_Android
 
@@ -108,17 +109,19 @@ public class TunerActivity extends Activity {
                         text.setText("" + (java.lang.Math.round(hz * 10) / 10.0) + " Hz");
                         text = (TextView) findViewById(R.id.note);
                         text.setText("" + n.getName());
-
-                        if (java.lang.Math.abs(n.getCents()) < 8)
-                            text.setTextColor(Color.GREEN);
-                        else if (java.lang.Math.abs(n.getCents()) < 16)
-                            text.setTextColor(Color.YELLOW);
-                        else
-                            text.setTextColor(Color.RED);
-                        //text = (TextView) findViewById(R.id.cents);
-                        //text.setText("" + n.getCents());
                         AbstractCentView centView = (AbstractCentView) findViewById(R.id.cent_view);
                         centView.setCents(n.getCents());
+
+                        if (java.lang.Math.abs(n.getCents()) < 8) {
+                            text.setTextColor(Color.GREEN);
+                            centView.setNeedleColor(Color.GREEN);
+                        } else if (java.lang.Math.abs(n.getCents()) < 16) {
+                            text.setTextColor(Color.YELLOW);
+                            centView.setNeedleColor(Color.YELLOW);
+                        } else {
+                            text.setTextColor(Color.RED);
+                            centView.setNeedleColor(Color.RED);
+                        }
                     }
                 });                        
             }

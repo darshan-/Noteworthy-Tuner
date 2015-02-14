@@ -62,7 +62,7 @@ public class ArcCentView extends AbstractCentView {
         else
             c = cents;
 
-        paint.setColor(Color.YELLOW);
+        paint.setColor(needleColor);
         paint.setStrokeWidth(5);
 
         float theta = MAX_ANGLE * c / 50;
@@ -84,7 +84,7 @@ public class ArcCentView extends AbstractCentView {
     }
 
     private void drawNeedleBase(Canvas canvas) {
-        paint.setColor(Color.YELLOW);
+        paint.setColor(needleColor);
         canvas.drawCircle(needle_base_x, needle_base_y, NEEDLE_BASE_DISC_RADIUS * height, paint);
 
         paint.setStrokeWidth(7);
