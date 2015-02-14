@@ -86,7 +86,7 @@ public class TunerActivity extends Activity {
         res = getResources();
         context = getApplicationContext();
         settings = PreferenceManager.getDefaultSharedPreferences(context);
-        HorizontalCentView centView = (HorizontalCentView) findViewById(R.id.cent_view);
+        AbstractCentView centView = (AbstractCentView) findViewById(R.id.cent_view);
         centView.setAnimationDuration(1000 / (SAMPLE_RATE / SAMPLES));
 
         // From http://0110.be/posts/TarsosDSP_on_Android_-_Audio_Processing_in_Java_on_Android
@@ -109,7 +109,7 @@ public class TunerActivity extends Activity {
                         text.setText("" + n.getName());
                         //text = (TextView) findViewById(R.id.cents);
                         //text.setText("" + n.getCents());
-                        HorizontalCentView centView = (HorizontalCentView) findViewById(R.id.cent_view);
+                        AbstractCentView centView = (AbstractCentView) findViewById(R.id.cent_view);
                         centView.setCents(n.getCents());
                     }
                 });                        

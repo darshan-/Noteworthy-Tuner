@@ -39,13 +39,8 @@ public abstract class AbstractCentView extends ImageView {
     protected final Runnable animate = new Runnable() {
         public void run() {
             long now = System.currentTimeMillis();
-            System.out.println("........... " + now + ": old animCents: " + animCents);
             float timePos = (float) (now - animStartMs) / (animEndMs - animStartMs);
-            System.out.println("  ...... timePos: " + timePos);
-            System.out.println("  ...... animStartCents: " + animStartCents);
-            System.out.println("  ...... animEndCents: " + animEndCents);
             animCents = animStartCents + (animEndCents - animStartCents) * timePos;
-            System.out.println("  ...... new animCents: " + animCents);
             invalidate();
 
             if (now < animEndMs)
@@ -110,7 +105,6 @@ public abstract class AbstractCentView extends ImageView {
         animStartCents = cents;
         animEndCents = c;
         animCents = cents; // In case View is invalidated before animate.run() is called
-        System.out.println("********* Animating from " + animStartCents + " to " + animEndCents);
         mHandler.post(animate);
     }
 
