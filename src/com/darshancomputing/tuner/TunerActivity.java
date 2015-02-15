@@ -70,8 +70,14 @@ public class TunerActivity extends Activity {
     private PitchDetector detector;
     private PitchProcessor pp;
 
-    private static final int SAMPLE_RATE = 48000;
+    // 48000 and 41000 seem to work fine, too, but they don't really seem any better, and 22050 is
+    //  noticeably faster on older devices
+    private static final int SAMPLE_RATE_DEFAULT = 22050;
+    private static final int SAMPLE_RATE = SAMPLE_RATE_DEFAULT;
     private static final int SAMPLES = SAMPLE_RATE / 5;
+
+    private static final float IN_TUNE_CENTS = 4.5f;
+    //private static final float MEDIUM_TUNE_CENTS = 12.0f;
 
     // AMDF and FFT_PITCH are unworkably slow or don't work at all
     private static final PitchEstimationAlgorithm ALGORITHM = PitchEstimationAlgorithm.FFT_YIN;
@@ -114,15 +120,15 @@ public class TunerActivity extends Activity {
                         AbstractCentView centView = (AbstractCentView) findViewById(R.id.cent_view);
                         centView.setCents(n.getCents());
 
-                        if (java.lang.Math.abs(n.getCents()) < 8) {
+                        if (java.lang.Math.abs(n.getCents()) < IN_TUNE_CENTS) {
                             text.setTextColor(Color.GREEN);
                             centView.setNeedleColor(Color.GREEN);
-                        } else if (java.lang.Math.abs(n.getCents()) < 16) {
+                        //} else if (java.lang.Math.abs(n.getCents()) < 16) {
+                        //    text.setTextColor(Color.YELLOW);
+                        //    centView.setNeedleColor(Color.YELLOW);
+                        } else {
                             text.setTextColor(Color.YELLOW);
                             centView.setNeedleColor(Color.YELLOW);
-                        } else {
-                            text.setTextColor(Color.RED);
-                            centView.setNeedleColor(Color.RED);
                         }
                     }
                 });                        
