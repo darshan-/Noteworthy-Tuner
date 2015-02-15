@@ -76,8 +76,10 @@ public class TunerActivity extends Activity {
     private static final int SAMPLE_RATE = SAMPLE_RATE_DEFAULT;
     private static final int SAMPLES = SAMPLE_RATE / 5;
 
-    private static final float IN_TUNE_CENTS = 4.5f;
+    private static final float IN_TUNE_CENTS = 4.0f;
     //private static final float MEDIUM_TUNE_CENTS = 12.0f;
+
+    private static final int NULL_NEEDLE_COLOR = 0xffcccccc;
 
     // AMDF and FFT_PITCH are unworkably slow or don't work at all
     private static final PitchEstimationAlgorithm ALGORITHM = PitchEstimationAlgorithm.FFT_YIN;
@@ -97,7 +99,7 @@ public class TunerActivity extends Activity {
         setTitle(R.string.app_full_name);
         AbstractCentView centView = (AbstractCentView) findViewById(R.id.cent_view);
         centView.setAnimationDuration(1000 / (SAMPLE_RATE / SAMPLES));
-        centView.setNeedleColor(Color.GREEN);
+        centView.setNeedleColor(NULL_NEEDLE_COLOR);
 
         // From http://0110.be/posts/TarsosDSP_on_Android_-_Audio_Processing_in_Java_on_Android
 
@@ -112,24 +114,29 @@ public class TunerActivity extends Activity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        // TODO: Show name in one color when "close enough" (abs(cents) < n) and another otherwise
-                        TextView text = (TextView) findViewById(R.id.pitchInHz);
-                        text.setText("" + (java.lang.Math.round(hz * 10) / 10.0) + " Hz");
+                        TextView text;
+                        String hzStr;
+                        int color;
+
+                        if (n.isNull()) {
+                            hzStr = "∅ Hz";
+                            color = NULL_NEEDLE_COLOR;
+                        } else {
+                            hzStr = "" + (java.lang.Math.round(hz * 10) / 10.0) + " Hz";
+                            if (java.lang.Math.abs(n.getCents()) < IN_TUNE_CENTS)
+                                color = Color.GREEN;
+                            else
+                                color = Color.YELLOW;
+                        }
+
+                        text = (TextView) findViewById(R.id.pitchInHz);
+                        text.setText(hzStr);
                         text = (TextView) findViewById(R.id.note);
                         text.setText("" + n.getName());
+                        text.setTextColor(color);
                         AbstractCentView centView = (AbstractCentView) findViewById(R.id.cent_view);
                         centView.setCents(n.getCents());
-
-                        if (java.lang.Math.abs(n.getCents()) < IN_TUNE_CENTS) {
-                            text.setTextColor(Color.GREEN);
-                            centView.setNeedleColor(Color.GREEN);
-                        //} else if (java.lang.Math.abs(n.getCents()) < 16) {
-                        //    text.setTextColor(Color.YELLOW);
-                        //    centView.setNeedleColor(Color.YELLOW);
-                        } else {
-                            text.setTextColor(Color.YELLOW);
-                            centView.setNeedleColor(Color.YELLOW);
-                        }
+                        centView.setNeedleColor(color);
                     }
                 });                        
             }

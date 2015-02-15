@@ -24,6 +24,7 @@ package com.darshancomputing.tuner;
 public class Note {
     private String name;
     private float cents;
+    private boolean isNull;
     private float lastHz;
     private float lastCents; // Last actual measured cents, so we don't keep averaging with last average
 
@@ -45,14 +46,21 @@ public class Note {
         return cents;
     }
 
+    public boolean isNull() {
+        return isNull;
+    }
+
     // Sets / updates note; if same note (same name and same octave), averages last and current cents
     public void fromHz(float hz) {
         if (hz < 0) {
-            name = "N/A";
+            isNull = true;
+            name = "—";//"☺";//"//";//"∅";//"N/A";
             cents = 0;
             return;
         }
-        
+
+        isNull = false;
+
         float semi = log2(java.lang.Math.pow(hz / 440.0, 12.0));
         int roundedSemi = java.lang.Math.round(semi);
         int note = (roundedSemi % 12 + 12) % 12; // Modules can be negative in Java

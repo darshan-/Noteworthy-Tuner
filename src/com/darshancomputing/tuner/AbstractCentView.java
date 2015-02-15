@@ -132,5 +132,6 @@ public abstract class AbstractCentView extends ImageView {
 
     public void setNeedleColor(int c) {
         needleColor = c;
+        invalidate();
     }
 }

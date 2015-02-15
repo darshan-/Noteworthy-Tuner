@@ -25,6 +25,7 @@ public class ArcCentView extends AbstractCentView {
 
     // Constants as ratio of View height
     private static final float NEEDLE_LEN = 0.85f;
+    private static final float NEEDLE_WIDTH = 0.005f;
     private static final float NEEDLE_BASE_Y = 0.1f;
     private static final float NEEDLE_BASE_DISC_RADIUS = 0.015f;
     private static final float NEEDLE_BASE_CIRC_RADIUS = 0.03f;
@@ -63,7 +64,7 @@ public class ArcCentView extends AbstractCentView {
             c = cents;
 
         paint.setColor(needleColor);
-        paint.setStrokeWidth(5);
+        paint.setStrokeWidth(height * NEEDLE_WIDTH);
 
         float theta = MAX_ANGLE * c / 50;
 
@@ -77,7 +78,7 @@ public class ArcCentView extends AbstractCentView {
     @Override
     protected void drawStatic(Canvas canvas) {
         paint.setColor(Color.RED);
-        paint.setStrokeWidth(12);
+        paint.setStrokeWidth(height * NEEDLE_WIDTH * 2.5f);
 
         canvas.drawLine(needle_base_x, height * 0.1f, needle_base_x, 6, paint);
         drawNeedleBase(canvas);
@@ -87,7 +88,7 @@ public class ArcCentView extends AbstractCentView {
         paint.setColor(needleColor);
         canvas.drawCircle(needle_base_x, needle_base_y, NEEDLE_BASE_DISC_RADIUS * height, paint);
 
-        paint.setStrokeWidth(7);
+        paint.setStrokeWidth(height * NEEDLE_WIDTH * 1.5f);
         paint.setStyle(Paint.Style.STROKE);
         canvas.drawCircle(needle_base_x, needle_base_y, NEEDLE_BASE_CIRC_RADIUS * height, paint);
         paint.setStyle(Paint.Style.FILL);
