@@ -77,10 +77,12 @@ public class ArcCentView extends AbstractCentView {
 
     @Override
     protected void drawStatic(Canvas canvas) {
+        float sw = height * NEEDLE_WIDTH * 2.7f;
         paint.setColor(Color.RED);
-        paint.setStrokeWidth(height * NEEDLE_WIDTH * 2.5f);
+        paint.setStrokeWidth(sw);
 
-        canvas.drawLine(needle_base_x, height * 0.1f, needle_base_x, 6, paint);
+        canvas.drawLine(needle_base_x, height * 0.1f, needle_base_x, sw, paint);
+
         drawNeedleBase(canvas);
     }
 
