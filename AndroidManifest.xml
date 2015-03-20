@@ -9,6 +9,7 @@
 >
   <application
       android:label="@string/app_full_name"
+      android:icon="@drawable/app_icon"
       android:hardwareAccelerated="true"
       android:process="com.darshancomputing.tuner"
   >
