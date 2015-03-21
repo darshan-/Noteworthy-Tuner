@@ -155,7 +155,10 @@ public class TunerActivity extends Activity {
     protected void onResume() {
         super.onResume();
 
-        detector.start();
+        if (!detector.start()) {
+            // Display message
+            finish();
+        }
     }
 
     @Override

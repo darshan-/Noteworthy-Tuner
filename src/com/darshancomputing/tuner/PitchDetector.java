@@ -48,7 +48,7 @@ public class PitchDetector {
     }
 
     // From TarsosDSP
-    private void initMic() {
+    private boolean initMic() {
         int minAudioBufferSize = AudioRecord.getMinBufferSize(mSampleRate,
                                                               android.media.AudioFormat.CHANNEL_IN_MONO,
                                                               android.media.AudioFormat.ENCODING_PCM_16BIT);
@@ -60,6 +60,10 @@ public class PitchDetector {
                                                android.media.AudioFormat.ENCODING_PCM_16BIT,
                                                mAudioBufferSize * 2);
 
+            if (audioInputStream.getState() != AudioRecord.STATE_INITIALIZED) {
+                return false;
+            }
+
             TarsosDSPAudioFormat format = new TarsosDSPAudioFormat(mSampleRate, 16, 1, true, false);
 		
             TarsosDSPAudioInputStream audioStream = new AndroidAudioInputStream(audioInputStream, format);
@@ -68,14 +72,24 @@ public class PitchDetector {
             new IllegalArgumentException("Buffer size too small; should be at least " + (minAudioBufferSize *2));
             dispatcher = null;
         }
+
+        return true;
     }
 
-    public void start() {
-        initMic();
+    public boolean start() {
+        if (! initMic()) return false;
+
         dispatcher.addAudioProcessor(mPp);
 
         audioInputStream.startRecording();
+
+        if (audioInputStream.getRecordingState() != AudioRecord.RECORDSTATE_RECORDING) {
+            return false;
+        }
+
         new Thread(dispatcher,"Audio Dispatcher").start();
+
+        return true;
     }
 
     public void stop() {
