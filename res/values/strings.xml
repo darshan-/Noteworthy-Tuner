@@ -2,4 +2,11 @@
 <resources>
   <string formatted="false" name="app_full_name">Noteworthy Tuner</string>
   <string formatted="false" name="app_launcher_name">Noteworthy</string>
+  <string formatted="false" name="mic_unavailable_title">Mic Unavailable</string>
+  <string formatted="false" name="mic_unavailable_message">Another
+  app is currently using the microphone (e.g., the phone, another tuner, a sound recorder, etc.).\n
+
+  \nPlease close the other app then try again.
+  </string>
+  <string formatted="false" name="okay">Okay</string>
 </resources>

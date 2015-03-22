@@ -15,8 +15,11 @@
 package com.darshancomputing.tuner;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.ComponentName;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.res.Configuration;
@@ -85,6 +88,9 @@ public class TunerActivity extends Activity {
     private static final PitchEstimationAlgorithm ALGORITHM = PitchEstimationAlgorithm.FFT_YIN;
     //private static final PitchEstimationAlgorithm ALGORITHM = PitchEstimationAlgorithm.DYNAMIC_WAVELET;
     //private static final PitchEstimationAlgorithm ALGORITHM = PitchEstimationAlgorithm.MPM;
+
+    private static final int DIALOG_MUST_CLOSE_MIC_UNAVAILABLE = 0;
+    private boolean micUnavailableDialogShowing = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -156,14 +162,19 @@ public class TunerActivity extends Activity {
         super.onResume();
 
         if (!detector.start()) {
-            // Display message
-            finish();
+            showDialog(DIALOG_MUST_CLOSE_MIC_UNAVAILABLE);
+            micUnavailableDialogShowing = true;
         }
     }
 
     @Override
     protected void onPause() {
         super.onPause();
+
+        if (micUnavailableDialogShowing) {
+            dismissDialog(DIALOG_MUST_CLOSE_MIC_UNAVAILABLE);
+            micUnavailableDialogShowing = false;
+        }
 
         detector.stop();
     }
@@ -172,4 +183,31 @@ public class TunerActivity extends Activity {
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
     }
+
+    @Override
+    protected Dialog onCreateDialog(int id) {
+        Dialog dialog;
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        switch (id) {
+        case DIALOG_MUST_CLOSE_MIC_UNAVAILABLE:
+            builder.setTitle(res.getString(R.string.mic_unavailable_title))
+                .setMessage(res.getString(R.string.mic_unavailable_message))
+                .setCancelable(false)
+                .setPositiveButton(res.getString(R.string.okay), new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface di, int id) {
+                        finish();
+                        di.cancel();
+                    }
+                });
+
+            dialog = builder.create();
+            break;
+        default:
+            dialog = null;
+        }
+
+        return dialog;
+    }
+
 }
