@@ -8,6 +8,7 @@ gen
 #libs
 TODO
 my-release-key.keystore
+*.apk
 
 !build.properties
 !ant.properties
