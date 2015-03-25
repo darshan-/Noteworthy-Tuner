@@ -25,6 +25,10 @@
       </intent-filter>
     </activity>
 
+    <activity android:name=".HelpActivity"
+              android:stateNotNeeded="true"
+	      android:excludeFromRecents="true"
+    />
   </application>
 
   <uses-sdk

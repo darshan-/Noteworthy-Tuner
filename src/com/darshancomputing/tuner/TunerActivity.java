@@ -177,6 +177,35 @@ public class TunerActivity extends Activity {
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+      /*case R.id.menu_settings:
+            mStartActivity(SettingsActivity.class);
+            return true;*/
+        case R.id.menu_help:
+            mStartActivity(HelpActivity.class);
+            return true;
+        case R.id.menu_rate_and_review:
+            try {
+                startActivity(new Intent(Intent.ACTION_VIEW,
+                                         Uri.parse("market://details?id=com.darshancomputing.tuner")));
+            } catch (Exception e) {
+                Toast.makeText(getApplicationContext(), "Sorry, can't launch Play Store!", Toast.LENGTH_SHORT).show();
+            }
+            return true;
+        default:
+            return super.onOptionsItemSelected(item);
+        }
+    }
+
+    @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
     }
@@ -193,6 +222,7 @@ public class TunerActivity extends Activity {
                 .setCancelable(false)
                 .setPositiveButton(res.getString(R.string.okay), new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface di, int id) {
+                        finishActivity(1);
                         finish();
                         di.cancel();
                     }
@@ -207,4 +237,8 @@ public class TunerActivity extends Activity {
         return dialog;
     }
 
+    private void mStartActivity(Class c) {
+        ComponentName comp = new ComponentName(context.getPackageName(), c.getName());
+        startActivityForResult(new Intent().setComponent(comp), 1);
+    }
 }
