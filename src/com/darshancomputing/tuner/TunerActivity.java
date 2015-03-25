@@ -57,8 +57,6 @@ import be.tarsos.dsp.pitch.PitchDetectionResult;
 import be.tarsos.dsp.pitch.PitchProcessor;
 import be.tarsos.dsp.pitch.PitchProcessor.PitchEstimationAlgorithm;
 
-// TODO: Keep screen on (past normal inactivity timeout)
-//   (Will Activity still get paused on power button press?)
 public class TunerActivity extends Activity {
     private SharedPreferences settings;
     private SharedPreferences sp_store;
@@ -107,10 +105,9 @@ public class TunerActivity extends Activity {
         centView.setAnimationDuration(1000 / (SAMPLE_RATE / SAMPLES));
         centView.setNeedleColor(NULL_NEEDLE_COLOR);
 
-        // From http://0110.be/posts/TarsosDSP_on_Android_-_Audio_Processing_in_Java_on_Android
-
         final Note n = new Note();
 
+        // Initially based on http://0110.be/posts/TarsosDSP_on_Android_-_Audio_Processing_in_Java_on_Android
         PitchDetectionHandler pdh = new PitchDetectionHandler() {
             @Override
             public void handlePitch(PitchDetectionResult result, AudioEvent e) {

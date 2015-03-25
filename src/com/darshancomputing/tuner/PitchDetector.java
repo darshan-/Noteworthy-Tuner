@@ -10,9 +10,6 @@
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
-
-
-    Based on code from TarsosDSP
 */
 
 package com.darshancomputing.tuner;
@@ -47,31 +44,26 @@ public class PitchDetector {
         mPp = pp;
     }
 
-    // From TarsosDSP
+    // Initially based on AudioDispatcherFactory.java from TarsosDSP
     private boolean initMic() {
-        int minAudioBufferSize = AudioRecord.getMinBufferSize(mSampleRate,
-                                                              android.media.AudioFormat.CHANNEL_IN_MONO,
-                                                              android.media.AudioFormat.ENCODING_PCM_16BIT);
-        int minAudioBufferSizeInSamples =  minAudioBufferSize / 2;
-
-        if (minAudioBufferSizeInSamples <= mAudioBufferSize){
-            audioInputStream = new AudioRecord(MediaRecorder.AudioSource.MIC, mSampleRate,
-                                               android.media.AudioFormat.CHANNEL_IN_MONO,
-                                               android.media.AudioFormat.ENCODING_PCM_16BIT,
-                                               mAudioBufferSize * 2);
-
-            if (audioInputStream.getState() != AudioRecord.STATE_INITIALIZED) {
-                return false;
-            }
-
-            TarsosDSPAudioFormat format = new TarsosDSPAudioFormat(mSampleRate, 16, 1, true, false);
-		
-            TarsosDSPAudioInputStream audioStream = new AndroidAudioInputStream(audioInputStream, format);
-            dispatcher = new AudioDispatcher(audioStream, mAudioBufferSize, mBufferOverlap);
-        } else {
-            new IllegalArgumentException("Buffer size too small; should be at least " + (minAudioBufferSize *2));
-            dispatcher = null;
+        if (AudioRecord.getMinBufferSize(mSampleRate, android.media.AudioFormat.CHANNEL_IN_MONO,
+                                         android.media.AudioFormat.ENCODING_PCM_16BIT) < 0) {
+            return false;
         }
+
+        audioInputStream = new AudioRecord(MediaRecorder.AudioSource.MIC, mSampleRate,
+                                           android.media.AudioFormat.CHANNEL_IN_MONO,
+                                           android.media.AudioFormat.ENCODING_PCM_16BIT,
+                                           mAudioBufferSize * 2);
+
+        if (audioInputStream.getState() != AudioRecord.STATE_INITIALIZED) {
+            return false;
+        }
+
+        TarsosDSPAudioFormat format = new TarsosDSPAudioFormat(mSampleRate, 16, 1, true, false);
+		
+        TarsosDSPAudioInputStream audioStream = new AndroidAudioInputStream(audioInputStream, format);
+        dispatcher = new AudioDispatcher(audioStream, mAudioBufferSize, mBufferOverlap);
 
         return true;
     }
@@ -93,6 +85,8 @@ public class PitchDetector {
     }
 
     public void stop() {
+        if (dispatcher == null) return;
+
         dispatcher.stop();
 
         try {
