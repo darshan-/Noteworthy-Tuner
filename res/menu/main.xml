@@ -11,7 +11,7 @@
       android:id="@+id/menu_help"
       android:icon="@+android:drawable/ic_menu_help"
       android:title="@string/menu_help"
-      android:showAsAction="never"
+      android:showAsAction="always|withText"
   />
 
   <item
