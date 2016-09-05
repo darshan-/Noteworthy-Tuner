@@ -9,6 +9,7 @@
   \nPlease close the other app then try again.
   </string>
   <string formatted="false" name="okay">Okay</string>
+  <string formatted="false" name="need_mic_permission">Noteworthy Tuner requires access to microphone!</string>
 
   <string formatted="false" name="menu_settings">Settings</string>
   <string formatted="false" name="menu_help">Help</string>

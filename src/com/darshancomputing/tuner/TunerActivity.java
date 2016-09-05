@@ -22,6 +22,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.content.SharedPreferences;
@@ -64,7 +65,6 @@ public class TunerActivity extends Activity {
     private LayoutInflater mInflater;
 
     private Resources res;
-    private Context context;
 
     private final Handler mHandler = new Handler();
 
@@ -90,6 +90,24 @@ public class TunerActivity extends Activity {
     private static final int DIALOG_MUST_CLOSE_MIC_UNAVAILABLE = 0;
     private boolean micUnavailableDialogShowing = false;
 
+    private static final String P_RECORD_AUDIO = android.Manifest.permission.RECORD_AUDIO;
+    private static final int PR_RECORD_AUDIO = 1;
+
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        switch (requestCode) {
+            case PR_RECORD_AUDIO: {
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    init();
+                } else {
+                    Toast.makeText(this, res.getString(R.string.need_mic_permission), Toast.LENGTH_SHORT).show();
+                    checkMicPermission();
+                }
+
+                return;
+            }
+        }
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -97,10 +115,27 @@ public class TunerActivity extends Activity {
         setContentView(R.layout.home_wrapper);
 
         res = getResources();
-        context = getApplicationContext();
-        settings = PreferenceManager.getDefaultSharedPreferences(context);
+        settings = PreferenceManager.getDefaultSharedPreferences(this);
 
         setTitle(R.string.app_full_name);
+
+        if (checkMicPermission())
+            init();
+    }
+
+    private boolean checkMicPermission() {
+        if (android.os.Build.VERSION.SDK_INT < 23)
+            return true;
+
+        if (checkSelfPermission(P_RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
+            requestPermissions(new String[]{P_RECORD_AUDIO}, PR_RECORD_AUDIO);
+            return false;
+        }
+
+        return true;
+    }
+
+    private void init() {
         AbstractCentView centView = (AbstractCentView) findViewById(R.id.cent_view);
         centView.setAnimationDuration(1000 / (SAMPLE_RATE / SAMPLES));
         centView.setNeedleColor(NULL_NEEDLE_COLOR);
@@ -147,6 +182,7 @@ public class TunerActivity extends Activity {
 
         pp = new PitchProcessor(ALGORITHM, SAMPLE_RATE, SAMPLES, pdh);
         detector = new PitchDetector(SAMPLE_RATE, SAMPLES, 0 /* SAMPLES / 2 */, pp);
+        checkMicAvailable();
     }
 
     @Override
@@ -155,25 +191,30 @@ public class TunerActivity extends Activity {
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
+    protected void onStart() {
+        super.onStart();
 
-        if (!detector.start()) {
+        checkMicAvailable();
+    }
+
+    private void checkMicAvailable() {
+        if (detector != null && !detector.started() && !detector.start()) {
             showDialog(DIALOG_MUST_CLOSE_MIC_UNAVAILABLE);
             micUnavailableDialogShowing = true;
         }
     }
 
     @Override
-    protected void onPause() {
-        super.onPause();
+    protected void onStop() {
+        super.onStop();
 
         if (micUnavailableDialogShowing) {
             dismissDialog(DIALOG_MUST_CLOSE_MIC_UNAVAILABLE);
             micUnavailableDialogShowing = false;
         }
 
-        detector.stop();
+        if (detector != null)
+            detector.stop();
     }
 
     @Override
@@ -197,7 +238,7 @@ public class TunerActivity extends Activity {
                 startActivity(new Intent(Intent.ACTION_VIEW,
                                          Uri.parse("market://details?id=com.darshancomputing.tuner")));
             } catch (Exception e) {
-                Toast.makeText(getApplicationContext(), "Sorry, can't launch Play Store!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Sorry, can't launch Play Store!", Toast.LENGTH_SHORT).show();
             }
             return true;
         default:
@@ -238,7 +279,7 @@ public class TunerActivity extends Activity {
     }
 
     private void mStartActivity(Class c) {
-        ComponentName comp = new ComponentName(context.getPackageName(), c.getName());
+        ComponentName comp = new ComponentName(getPackageName(), c.getName());
         startActivityForResult(new Intent().setComponent(comp), 1);
     }
 }

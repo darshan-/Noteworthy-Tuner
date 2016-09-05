@@ -48,6 +48,6 @@
   <color name="my_yellow">#E8D018</color>
   <color name="my_darker_yellow">#D0BF27</color>
 
-  <style name="bi_help_theme" parent="@android:style/Theme.Light">
+  <style name="main_theme" parent="@android:style/Theme">
   </style>
 </resources>

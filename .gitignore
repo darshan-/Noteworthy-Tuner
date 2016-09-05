@@ -10,6 +10,9 @@ TODO
 my-release-key.keystore
 *.apk
 
+.gradle
+build
+
 !build.properties
 !ant.properties
 

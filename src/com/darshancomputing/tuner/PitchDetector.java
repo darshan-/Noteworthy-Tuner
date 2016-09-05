@@ -32,6 +32,7 @@ public class PitchDetector {
     private int mSampleRate;
     private int mAudioBufferSize;
     private int mBufferOverlap;
+    private boolean started;
 
     /* sampleRate:      The requested sample rate.
      * audioBufferSize: The size of the audio buffer (in samples).
@@ -69,22 +70,31 @@ public class PitchDetector {
     }
 
     public boolean start() {
-        if (! initMic()) return false;
+        started = false;
+
+        if (! initMic()) return started;
 
         dispatcher.addAudioProcessor(mPp);
 
         audioInputStream.startRecording();
 
         if (audioInputStream.getRecordingState() != AudioRecord.RECORDSTATE_RECORDING) {
-            return false;
+            return started;
         }
 
         new Thread(dispatcher,"Audio Dispatcher").start();
 
-        return true;
+        started = true;
+        return started;
+    }
+
+    public boolean started() {
+        return started;
     }
 
     public void stop() {
+        started = false;
+
         if (dispatcher == null) return;
 
         dispatcher.stop();
