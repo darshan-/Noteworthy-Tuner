@@ -132,7 +132,7 @@ public class TunerActivity extends Activity {
     }
 
     private void init() {
-        AbstractCentView centView = (AbstractCentView) findViewById(R.id.cent_view);
+        final AbstractCentView centView = (AbstractCentView) findViewById(R.id.cent_view);
         centView.setAnimationDuration(1000 / (SAMPLE_RATE / SAMPLES));
         centView.setNeedleColor(NULL_NEEDLE_COLOR);
 
@@ -151,6 +151,14 @@ public class TunerActivity extends Activity {
             text.setVisibility(View.INVISIBLE);
         }
 
+        final TextView pitchInHz_tv = (TextView) findViewById(R.id.pitchInHz);
+        final TextView note_tv = (TextView) findViewById(R.id.note);
+        final TextView tooFlat_tv = (TextView) findViewById(R.id.tooFlat);
+        final TextView tooSharp_tv = (TextView) findViewById(R.id.tooSharp);
+
+        tooFlat_tv.setVisibility(View.INVISIBLE);
+        tooSharp_tv.setVisibility(View.INVISIBLE);
+
         // Initially based on http://0110.be/posts/TarsosDSP_on_Android_-_Audio_Processing_in_Java_on_Android
         PitchDetectionHandler pdh = new PitchDetectionHandler() {
             @Override
@@ -168,20 +176,35 @@ public class TunerActivity extends Activity {
                         if (n.isNull()) {
                             hzStr = "∅ Hz";
                             color = NULL_NEEDLE_COLOR;
+                            tooFlat_tv.setVisibility(View.INVISIBLE);
+                            tooSharp_tv.setVisibility(View.INVISIBLE);
                         } else {
                             hzStr = "" + (java.lang.Math.round(hz * 10) / 10.0) + " Hz";
-                            if (java.lang.Math.abs(n.getCents()) < IN_TUNE_CENTS)
+                            if (java.lang.Math.abs(n.getCents()) < IN_TUNE_CENTS) {
                                 color = Color.GREEN;
-                            else
+                                tooFlat_tv.setVisibility(View.INVISIBLE);
+                                tooSharp_tv.setVisibility(View.INVISIBLE);
+                            } else {
                                 color = Color.YELLOW;
+
+                                if (settings.getBoolean(SettingsActivity.KEY_FLAT_SHARP_HINT, false)) {
+                                    if (n.getCents() < 0) {
+                                        tooFlat_tv.setVisibility(View.VISIBLE);
+                                        tooSharp_tv.setVisibility(View.INVISIBLE);
+                                    } else {
+                                        tooFlat_tv.setVisibility(View.INVISIBLE);
+                                        tooSharp_tv.setVisibility(View.VISIBLE);
+                                    }
+                                }
+                            }
                         }
 
-                        text = (TextView) findViewById(R.id.pitchInHz);
-                        text.setText(hzStr);
-                        text = (TextView) findViewById(R.id.note);
-                        text.setText("" + n.getName());
-                        text.setTextColor(color);
-                        AbstractCentView centView = (AbstractCentView) findViewById(R.id.cent_view);
+                        //text = (TextView) findViewById(R.id.pitchInHz);
+                        pitchInHz_tv.setText(hzStr);
+                        //text = (TextView) findViewById(R.id.note);
+                        note_tv.setText("" + n.getName());
+                        note_tv.setTextColor(color);
+
                         centView.setCents(n.getCents());
                         centView.setNeedleColor(color);
                     }

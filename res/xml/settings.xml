@@ -5,6 +5,9 @@
     android:defaultValue="false"
   /-->
 
+  <PreferenceCategory
+      android:title="@string/pref_cat_a4"
+  >
   <ListPreference
     android:key="a4_hz"
     android:title="@string/pref_a4_hz"
@@ -21,13 +24,16 @@
     android:inputType="numberDecimal"
     android:maxLength="8"
     android:enabled="false"
+    />
+  </PreferenceCategory>
+
+  <PreferenceCategory
+      android:title="@string/pref_cat_beginners"
+  >
+  <CheckBoxPreference
+    android:key="flat_sharp_hint"
+    android:title="@string/pref_flat_sharp_hint"
+    android:defaultValue="false"
   />
-
-  <!--
-      Two NumberPickers?
-      400-500 . 00-99
-      On API 11+
-
-      EditTextPreference otherwise?
-  -->
+  </PreferenceCategory>
 </PreferenceScreen>

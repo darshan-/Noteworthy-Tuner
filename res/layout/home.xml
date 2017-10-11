@@ -12,6 +12,21 @@
             android:textSize="48sp"
             android:textColor="#fff"
   />
+  <FrameLayout
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content">
+
+  <TextView android:id="@+id/tooFlat"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:paddingLeft="10dp"
+            android:textSize="20sp"
+            android:textColor="#ff0"
+            android:visibility="invisible"
+            android:text="Flat"
+  />
+
   <TextView android:id="@+id/pitchInHz"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -19,6 +34,18 @@
             android:textSize="20sp"
             android:textColor="#ccc"
   />
+
+  <TextView android:id="@+id/tooSharp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:paddingRight="10dp"
+            android:textSize="20sp"
+            android:textColor="#ff0"
+            android:visibility="invisible"
+            android:text="Sharp"
+  />
+  </FrameLayout>
   <!--com.darshancomputing.tuner.HorizontalCentView
       android:id="@+id/cent_view"
       android:layout_width="fill_parent"

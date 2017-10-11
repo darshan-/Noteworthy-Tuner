@@ -59,6 +59,7 @@ public class SettingsActivity extends PreferenceActivity implements OnSharedPref
     //public static final String KEY_LARGER_BUFFER = "larger_buffer";
     public static final String KEY_A4_HZ = "a4_hz";
     public static final String KEY_A4_HZ_OTHER = "a4_hz_other";
+    public static final String KEY_FLAT_SHARP_HINT = "flat_sharp_hint";
 
     private static final String[] PARENTS    = {};
     private static final String[] DEPENDENTS = {};

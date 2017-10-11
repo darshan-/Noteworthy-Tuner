@@ -98,6 +98,12 @@
   Needle responds more slowly, better at detecting very low pitches
   </string-->
 
+  <string formatted="false" name="pref_cat_a4">A4 frequency</string>
+
   <string formatted="false" name="pref_a4_hz">A4 frequency</string>
   <string formatted="false" name="pref_a4_hz_other">Other A4 frequency</string>
+
+  <string formatted="false" name="pref_cat_beginners">Beginners</string>
+
+  <string formatted="false" name="pref_flat_sharp_hint">Flat/sharp hint</string>
 </resources>
