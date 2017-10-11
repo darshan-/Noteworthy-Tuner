@@ -106,4 +106,12 @@
   <string formatted="false" name="pref_cat_beginners">Beginners</string>
 
   <string formatted="false" name="pref_flat_sharp_hint">Flat/sharp hint</string>
+
+  <string formatted="false" name="pref_cat_support_dev">Support development</string>
+  <string formatted="false" name="pref_support_dev_blurb">I\'ve
+  chosen to keep all of these options available for all users for free.
+  Please consider supporting the development of this open source app by purchasing
+  the Pro version of my other app, BatteryBot.  Thanks!
+  </string>
+  <string formatted="false" name="get_batterybot_b">Get BatteryBot Pro</string>
 </resources>

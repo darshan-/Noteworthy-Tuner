@@ -36,4 +36,19 @@
     android:defaultValue="false"
   />
   </PreferenceCategory>
+
+  <PreferenceCategory
+    android:title="@string/pref_cat_support_dev"
+  >
+    <Preference
+        android:key="get_batterybot_pro"
+        android:layout="@layout/get_batterybot_pro"
+    />
+
+    <Preference
+       android:summary="@string/pref_support_dev_blurb"
+       android:layout="@layout/support_dev_pref"
+       android:enabled="false"
+    />
+  </PreferenceCategory>
 </PreferenceScreen>
