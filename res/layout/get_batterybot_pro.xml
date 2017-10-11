@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Button xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/donate_b"
+    android:layout_height="65dp"
+    android:layout_width="fill_parent"
+    android:layout_gravity="center_horizontal"
+    android:onClick="donateButtonClick"
+    android:textSize="16sp"
+    android:text="@string/get_batterybot_b"
+/>
