@@ -140,7 +140,16 @@ public class TunerActivity extends Activity {
         String a4_hz = settings.getString(SettingsActivity.KEY_A4_HZ, default_a4_hz);
         if ("other".equals(a4_hz))
             a4_hz = settings.getString(SettingsActivity.KEY_A4_HZ_OTHER, default_a4_hz);
-        final Note n = new Note(java.lang.Float.parseFloat(a4_hz));
+        final float a4f = java.lang.Float.parseFloat(a4_hz);
+        final Note n = new Note(a4f);
+
+        TextView text = (TextView) findViewById(R.id.a4Hz);
+        if (a4f != 440.0) {
+            text.setText("A4=" + a4f + " Hz");
+            text.setVisibility(View.VISIBLE);
+        } else {
+            text.setVisibility(View.INVISIBLE);
+        }
 
         // Initially based on http://0110.be/posts/TarsosDSP_on_Android_-_Audio_Processing_in_Java_on_Android
         PitchDetectionHandler pdh = new PitchDetectionHandler() {

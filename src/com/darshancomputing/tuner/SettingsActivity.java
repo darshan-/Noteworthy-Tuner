@@ -189,6 +189,23 @@ public class SettingsActivity extends PreferenceActivity implements OnSharedPref
         if (key.equals(KEY_A4_HZ))
             setEnablednessOfA4Other();
 
+        if (key.equals(KEY_A4_HZ_OTHER)) {
+            EditTextPreference p = (EditTextPreference) mPreferenceScreen.findPreference(KEY_A4_HZ_OTHER);
+            String text = p.getText();
+
+            if (text.isEmpty()) {
+                String default_a4_hz = res.getString(R.string.default_a4_hz);
+                p.setText(default_a4_hz);
+            }
+
+            float f = java.lang.Float.parseFloat(text);
+
+            if (f < 220)
+                p.setText("220.0");
+            else if (f > 880)
+                p.setText("880.0");
+        }
+
         if (key.equals(KEY_A4_HZ) || key.equals(KEY_A4_HZ_OTHER))
             setA4OtherSummary();
 

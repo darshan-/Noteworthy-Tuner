@@ -33,6 +33,9 @@
       android:enabled="false"
   /-->
 
+  <FrameLayout
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
   <com.darshancomputing.tuner.ArcCentView
       android:id="@+id/cent_view"
       android:layout_width="fill_parent"
@@ -46,6 +49,17 @@
       android:src="@drawable/horizontal_cent_background"
       android:enabled="false"
   />
+
+    <TextView android:id="@+id/a4Hz"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:paddingLeft="12dp"
+            android:paddingBottom="10dp"
+            android:gravity="left|bottom"
+            android:textSize="12sp"
+            android:textColor="#0f0"
+            />
+  </FrameLayout>
 
   <!--TextView android:id="@+id/cents"
             android:layout_width="fill_parent"
