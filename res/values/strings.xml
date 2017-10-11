@@ -99,5 +99,5 @@
   </string-->
 
   <string formatted="false" name="pref_a4_hz">A4 frequency</string>
-  <string formatted="false" name="pref_a4_hz_custum">Custom A4 frequency</string>
+  <string formatted="false" name="pref_a4_hz_other">Other A4 frequency</string>
 </resources>

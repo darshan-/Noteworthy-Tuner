@@ -10,13 +10,13 @@
     <item>Other...</item>
   </string-array>
   <string-array name="a4_hz_values">
-    <item>415</item>
-    <item>430</item>
-    <item>440</item>
-    <item>444</item>
-    <item>466</item>
+    <item>415.0</item>
+    <item>430.0</item>
+    <item>440.0</item>
+    <item>444.0</item>
+    <item>466.0</item>
     <item>other</item>
   </string-array>
 
-  <string name="default_a4_hz">440</string>
+  <string name="default_a4_hz">440.0</string>
 </resources>

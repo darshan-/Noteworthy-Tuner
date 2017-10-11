@@ -32,6 +32,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.os.Messenger;
 import android.preference.CheckBoxPreference;
+import android.preference.EditTextPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
@@ -101,6 +102,9 @@ public class SettingsActivity extends PreferenceActivity implements OnSharedPref
         // sp_store = getApplicationContext().getSharedPreferences(SP_STORE_FILE, Context.MODE_MULTI_PROCESS);
         // if(sp_store.getBoolean(KEY_PRO_UNLOCKED, false))
         //     unlockPro();
+
+        setEnablednessOfA4Other();
+        setA4OtherSummary();
 
         for (int i=0; i < PARENTS.length; i++)
             setEnablednessOfDeps(i);
@@ -182,6 +186,12 @@ public class SettingsActivity extends PreferenceActivity implements OnSharedPref
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         mSharedPreferences.unregisterOnSharedPreferenceChangeListener(this);
 
+        if (key.equals(KEY_A4_HZ))
+            setEnablednessOfA4Other();
+
+        if (key.equals(KEY_A4_HZ) || key.equals(KEY_A4_HZ_OTHER))
+            setA4OtherSummary();
+
         for (int i=0; i < PARENTS.length; i++) {
             if (key.equals(PARENTS[i])) {
                 setEnablednessOfDeps(i);
@@ -197,6 +207,25 @@ public class SettingsActivity extends PreferenceActivity implements OnSharedPref
         }
 
         mSharedPreferences.registerOnSharedPreferenceChangeListener(this);
+    }
+
+    private void setEnablednessOfA4Other() {
+        String default_a4_hz = res.getString(R.string.default_a4_hz);
+        String a4_hz = mSharedPreferences.getString(KEY_A4_HZ, default_a4_hz);
+        if ("other".equals(a4_hz))
+            mPreferenceScreen.findPreference(KEY_A4_HZ_OTHER).setEnabled(true);
+        else
+            mPreferenceScreen.findPreference(KEY_A4_HZ_OTHER).setEnabled(false);
+    }
+
+    private void setA4OtherSummary() {
+        EditTextPreference p = (EditTextPreference) mPreferenceScreen.findPreference(KEY_A4_HZ_OTHER);
+
+        if (p.isEnabled()) {
+            p.setSummary(res.getString(R.string.currently_set_to) + p.getText());
+        } else {
+            p.setSummary(res.getString(R.string.currently_disabled));
+        }
     }
 
     private void setEnablednessOfDeps(int index) {

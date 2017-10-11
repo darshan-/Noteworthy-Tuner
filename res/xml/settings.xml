@@ -14,12 +14,13 @@
     android:defaultValue="@string/default_a4_hz"
   />
 
-  <!--EditTextPreference
-     android:key="a4_hz"
-     android:title="@string/pref_a4_hz"
-     android:defaultValue="440.0"
-     android:enabled="false"
-  /-->
+  <EditTextPreference
+    android:key="a4_hz_other"
+    android:title="@string/pref_a4_hz_other"
+    android:defaultValue="@string/default_a4_hz"
+    android:inputType="numberDecimal"
+    android:enabled="false"
+  />
 
   <!--
       Two NumberPickers?
