@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2015 Darshan-Josiah Barber
+    Copyright (c) 2015-2017 Darshan-Josiah Barber
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -111,16 +111,12 @@ public class TunerActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.home_wrapper);
 
         res = getResources();
         settings = PreferenceManager.getDefaultSharedPreferences(this);
 
         setTitle(R.string.app_full_name);
-
-        if (checkMicPermission())
-            init();
     }
 
     private boolean checkMicPermission() {
@@ -140,7 +136,11 @@ public class TunerActivity extends Activity {
         centView.setAnimationDuration(1000 / (SAMPLE_RATE / SAMPLES));
         centView.setNeedleColor(NULL_NEEDLE_COLOR);
 
-        final Note n = new Note();
+        String default_a4_hz = res.getString(R.string.default_a4_hz);
+        String a4_hz = settings.getString(SettingsActivity.KEY_A4_HZ, default_a4_hz);
+        if ("other".equals(a4_hz))
+            a4_hz = settings.getString(SettingsActivity.KEY_A4_HZ_OTHER, default_a4_hz);
+        final Note n = new Note(java.lang.Float.parseFloat(a4_hz));
 
         // Initially based on http://0110.be/posts/TarsosDSP_on_Android_-_Audio_Processing_in_Java_on_Android
         PitchDetectionHandler pdh = new PitchDetectionHandler() {
@@ -180,8 +180,23 @@ public class TunerActivity extends Activity {
             }
         };
 
-        pp = new PitchProcessor(ALGORITHM, SAMPLE_RATE, SAMPLES, pdh);
-        detector = new PitchDetector(SAMPLE_RATE, SAMPLES, 0 /* SAMPLES / 2 */, pp);
+        // 1.0 multiplier
+        // Normal buffer; should be medium response speed, medium ability to detect low pitch
+        //   Seems like a very good default still.
+
+        // 2.0 multiplier
+        // Large buffer; should be slow response, more able to detect low pitch
+        //   Does seem somewhat more accurate at very low pitches.  May be favorable in some
+        //    circumstances to have needle move less frequently.  So a worthwhile option to
+        //    have while sticking with normal value by default.
+
+        float bufMult = 1.0f;
+        // if (settings.getBoolean(SettingsActivity.KEY_LARGER_BUFFER, false))
+        //     bufMult = 2.0f;
+        int bufSize = (int) (SAMPLES * bufMult);
+        pp = new PitchProcessor(ALGORITHM, SAMPLE_RATE, bufSize, pdh);
+        detector = new PitchDetector(SAMPLE_RATE, bufSize, 0 /* SAMPLES / 2 */, pp);
+
         checkMicAvailable();
     }
 
@@ -193,6 +208,9 @@ public class TunerActivity extends Activity {
     @Override
     protected void onStart() {
         super.onStart();
+
+        if (checkMicPermission())
+            init();
 
         checkMicAvailable();
     }
@@ -227,9 +245,9 @@ public class TunerActivity extends Activity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-      /*case R.id.menu_settings:
+      case R.id.menu_settings:
             mStartActivity(SettingsActivity.class);
-            return true;*/
+            return true;
         case R.id.menu_help:
             mStartActivity(HelpActivity.class);
             return true;

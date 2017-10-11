@@ -5,8 +5,8 @@
     android:sharedUserId="com.darshancomputing.tuner"
     android:installLocation="auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:versionCode="14"
-    android:versionName="1.0.1"
+    android:versionCode="15"
+    android:versionName="2.0.0-dev"
 >
   <application
       android:label="@string/app_full_name"
@@ -32,6 +32,11 @@
     <activity android:name=".HelpActivity"
               android:stateNotNeeded="true"
 	      android:excludeFromRecents="true"
+    />
+
+    <activity
+        android:name=".SettingsActivity"
+        android:excludeFromRecents="true"
     />
   </application>
 

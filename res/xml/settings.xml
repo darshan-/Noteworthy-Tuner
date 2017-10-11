@@ -1,0 +1,31 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+  <!--CheckBoxPreference
+    android:key="larger_buffer"
+    android:title="@string/pref_larger_buffer"
+    android:defaultValue="false"
+  /-->
+
+  <ListPreference
+    android:key="a4_hz"
+    android:title="@string/pref_a4_hz"
+    android:entries="@array/a4_hz_entries"
+    android:entryValues="@array/a4_hz_values"
+    android:dialogTitle="@string/pref_a4_hz"
+    android:defaultValue="@string/default_a4_hz"
+  />
+
+  <!--EditTextPreference
+     android:key="a4_hz"
+     android:title="@string/pref_a4_hz"
+     android:defaultValue="440.0"
+     android:enabled="false"
+  /-->
+
+  <!--
+      Two NumberPickers?
+      400-500 . 00-99
+      On API 11+
+
+      EditTextPreference otherwise?
+  -->
+</PreferenceScreen>

@@ -27,15 +27,18 @@ public class Note {
     private boolean isNull;
     private float lastHz;
     private float lastCents; // Last actual measured cents, so we don't keep averaging with last average
+    private float a4Hz;
 
     private static String[] notes = {"A", "A♯ / B♭", "B", "C", "C♯ / D♭", "D", "D♯ / E♭", "E", "F", "F♯ / G♭", "G", "G♯ / A♭"};
 
     public Note() {
+        a4Hz = 440.0f;
         fromHz(-1);
     }
 
-    public Note(float hz) {
-        fromHz(hz);
+    public Note(float a4) {
+        a4Hz = a4;
+        fromHz(-1);
     }
 
     public String getName() {
@@ -61,9 +64,9 @@ public class Note {
 
         isNull = false;
 
-        float semi = log2(java.lang.Math.pow(hz / 440.0, 12.0));
+        float semi = log2(java.lang.Math.pow(hz / a4Hz, 12.0));
         int roundedSemi = java.lang.Math.round(semi);
-        int note = (roundedSemi % 12 + 12) % 12; // Modules can be negative in Java
+        int note = (roundedSemi % 12 + 12) % 12; // Modulus can be negative in Java
         String newName = notes[note];
         float newCents = (semi - roundedSemi) * 100;
 

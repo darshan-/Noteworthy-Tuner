@@ -86,4 +86,18 @@
     you have a question, a problem, or a comment, please
     <a href="mailto:support@noteworthytuner.com">email me</a>.
   </string>
+
+  <string formatted="false" name="settings_activity_subtitle">Settings</string>
+
+  <string formatted="false" name="currently_set_to">"Currently set to: "</string>
+  <string formatted="false" name="currently_disabled">Currently Disabled</string>
+
+  <!--string formatted="false" name="pref_larger_buffer">Use larger buffer</string>
+  <string formatted="false" name="pref_larger_buffer_summary_default">Using default buffer size</string>
+  <string formatted="false" name="pref_larger_buffer_summary_larger">Using larger buffer:
+  Needle responds more slowly, better at detecting very low pitches
+  </string-->
+
+  <string formatted="false" name="pref_a4_hz">A4 frequency</string>
+  <string formatted="false" name="pref_a4_hz_custum">Custom A4 frequency</string>
 </resources>
