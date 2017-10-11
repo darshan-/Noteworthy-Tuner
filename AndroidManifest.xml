@@ -5,8 +5,8 @@
     android:sharedUserId="com.darshancomputing.tuner"
     android:installLocation="auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:versionCode="16"
-    android:versionName="2.0.0"
+    android:versionCode="17"
+    android:versionName="2.0.1-dev"
 >
   <application
       android:label="@string/app_full_name"
