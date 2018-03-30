@@ -6,7 +6,7 @@
     android:installLocation="auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:versionCode="17"
-    android:versionName="2.0.1-dev2"
+    android:versionName="2.0.1-dev3"
 >
   <application
       android:label="@string/app_full_name"

@@ -48,6 +48,8 @@
   <color name="my_yellow">#E8D018</color>
   <color name="my_darker_yellow">#D0BF27</color>
 
+  <color name="launcher_background">#585858</color>
+
   <style name="main_theme" parent="@android:style/Theme">
   </style>
 </resources>
