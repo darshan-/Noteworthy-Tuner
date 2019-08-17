@@ -1,10 +1,15 @@
 buildscript {
     repositories {
+        mavenCentral()
+        google()
+        maven {
+            url "https://jitpack.io"
+        }
         jcenter()
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.3.3'
+        classpath 'com.android.tools.build:gradle:3.4.2'
     }
 }
 
@@ -14,18 +19,18 @@ Properties secureProperties = new Properties()
 secureProperties.load(new FileInputStream("secure.properties"))
 
 android {
-    compileSdkVersion 27
-    buildToolsVersion "27.0.1"
+    compileSdkVersion 28
+    //buildToolsVersion "27.0.1" // With Android plugin 3.0.0+, automatically uses latest now
 
     defaultConfig {
         minSdkVersion 11
-        targetSdkVersion 27
+        targetSdkVersion 28
 
         vectorDrawables.useSupportLibrary = false
 
-        jackOptions {
-            enabled false
-        }
+        //jackOptions {
+        //    enabled false
+        //}
     }
 
     compileOptions {
@@ -70,7 +75,18 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+}
+
+repositories {
+    mavenCentral()
+    google()
+    maven {
+        url 'https://maven.google.com'
+        // Alternative URL is 'https://dl.google.com/dl/android/maven2/'
+        url "https://jitpack.io"
+    }
+    jcenter()
 }
 
 gradle.projectsEvaluated {
