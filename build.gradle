@@ -15,8 +15,6 @@ buildscript {
 
 apply plugin: 'com.android.application'
 
-Properties secureProperties = new Properties()
-secureProperties.load(new FileInputStream("secure.properties"))
 
 android {
     compileSdkVersion 28
@@ -56,10 +54,7 @@ android {
 
     signingConfigs {
         release {
-            storeFile file("../BI_on_googlecode.com/private/my-release-key.keystore")
-            storePassword secureProperties['key.store.password']
-            keyAlias "alias_name"
-            keyPassword secureProperties['key.alias.password']
+
         }
     }
 
