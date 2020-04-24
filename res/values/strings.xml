@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string formatted="false" name="app_full_name">Quartertuner</string>
-  <string formatted="false" name="app_launcher_name">Quartertuner</string>
+  <string formatted="false" name="app_full_name">Quartertune</string>
+  <string formatted="false" name="app_launcher_name">Quartertune</string>
   <string formatted="false" name="mic_unavailable_title">Mic Unavailable</string>
   <string formatted="false" name="mic_unavailable_message">Another
   app is currently using the microphone (e.g., the phone, another tuner, a sound recorder, etc.).\n
@@ -9,7 +9,7 @@
   \nPlease close the other app then try again.
   </string>
   <string formatted="false" name="okay">Okay</string>
-  <string formatted="false" name="need_mic_permission">Quartertuner requires access to microphone!</string>
+  <string formatted="false" name="need_mic_permission">Quartertune requires access to microphone!</string>
 
   <string formatted="false" name="menu_settings">Settings</string>
   <string formatted="false" name="menu_help">Help</string>
@@ -19,12 +19,12 @@
 
   <string formatted="false" name="help_cat_changelog">Changelog</string>
   <string formatted="false" name="help_changelog">
-    Quartertuner is based on the Noteworthy Tuner. Please see the <a href="http://www.noteworthytuner.com/changelog">online Changelog</a>.
+    Quartertune is based on the Noteworthy Tuner. Please see the <a href="http://www.noteworthytuner.com/changelog">online Changelog</a>.
   </string>
 
   <string formatted="false" name="help_cat_faq">Frequently Asked Questions</string>
   <string formatted="false" name="help_faq">
-   There are currently no FAQs available for Quartertuner.
+   There are currently no FAQs available for Quartertune.
     FAQs for the original Noteworthy Tuner can be found <a href="http://www.noteworthytuner.com/faq">here</a>.
   </string>
 
@@ -35,7 +35,7 @@
   </string>
 
   <string formatted="false" name="help_cat_open_source">Open Source</string>
-  <string formatted="false" name="help_open_source">You can download the source code for Quartertuner at <a href="https://github.com/jsfalk/Quartertune">here</a>.
+  <string formatted="false" name="help_open_source">You can download the source code for Quartertune at <a href="https://github.com/jsfalk/Quartertune">here</a>.
     The source code for the original Noteworthy Tuner is available <a href="http://www.noteworthytuner.com/sourcecode">here</a>.
   </string>
 
