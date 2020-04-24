@@ -5,14 +5,6 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 
 ## [Unreleased]
 
-## [0.0.1] - 2020-04-24
-
-### Added
-- Add changelog.
-
-### Fixed
-- Fixed a bug that kept preferences from being set.
-
 ## [0.0.0] - 2020-04-24
 
 ### Added
