@@ -18,7 +18,7 @@
   <string formatted="false" name="help_cat_version">Version</string>
 
   <string formatted="false" name="help_cat_changelog">Changelog</string>
-  <string formatted="false" name="help_changelog">Quartertune is based on the Noteworthy Tuner. Please see the <a href="http://www.noteworthytuner.com/changelog">online Changelog</a>.
+  <string formatted="false" name="help_changelog">A Changelog is available <a href="https://github.com/jsfalk/Quartertune/CHANGELOG.md">here</a>.
   </string>
 
   <string formatted="false" name="help_cat_faq">Frequently Asked Questions</string>
@@ -32,7 +32,7 @@
   </string>
 
   <string formatted="false" name="help_cat_open_source">Open Source</string>
-  <string formatted="false" name="help_open_source">You can download the source code for Quartertune at <a href="https://github.com/jsfalk/Quartertune">here</a>.
+  <string formatted="false" name="help_open_source">You can download the source code for Quartertune <a href="https://github.com/jsfalk/Quartertune">here</a>.
     The source code for the original Noteworthy Tuner is available <a href="http://www.noteworthytuner.com/sourcecode">here</a>.
   </string>
 
