@@ -63,7 +63,7 @@
   <FrameLayout
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
-  <com.darshancomputing.tuner.ArcCentView
+  <com.jsf.quartertune.ArcCentView
       android:id="@+id/cent_view"
       android:layout_width="fill_parent"
       android:layout_height="fill_parent"

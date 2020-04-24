@@ -12,7 +12,7 @@
     GNU General Public License for more details.
 */
 
-package com.darshancomputing.tuner;
+package com.jsf.quartertune;
 
 /*
   TarsosDSP's apparent range of what it can recognize:

@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest
     xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.darshancomputing.tuner"
+    package="com.jsf.quartertune"
     android:installLocation="auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:versionCode="1"
+    android:versionCode="2"
     android:versionName="0.0.0"
 >
   <application
       android:label="@string/app_full_name"
       android:icon="@drawable/app_icon"
       android:hardwareAccelerated="true"
-      android:process="com.darshancomputing.tuner"
+      android:process="com.jsf.quartertune"
       android:allowBackup="false"
       android:resizeableActivity="true"
   >

@@ -12,13 +12,12 @@
     GNU General Public License for more details.
 */
 
-package com.darshancomputing.tuner;
+package com.jsf.quartertune;
 
 import android.media.AudioRecord;
 import android.media.MediaRecorder;
 
 import be.tarsos.dsp.AudioDispatcher;
-import be.tarsos.dsp.AudioProcessor;
 import be.tarsos.dsp.io.TarsosDSPAudioFormat;
 import be.tarsos.dsp.io.TarsosDSPAudioInputStream;
 import be.tarsos.dsp.io.android.AndroidAudioInputStream;

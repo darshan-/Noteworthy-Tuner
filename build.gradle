@@ -16,7 +16,8 @@ buildscript {
 apply plugin: 'com.android.application'
 
 Properties secureProperties = new Properties()
-secureProperties.load(new FileInputStream("secure.properties"))
+
+//secureProperties.load(new FileInputStream("secure.properties"))
 
 android {
     compileSdkVersion 28
@@ -56,7 +57,7 @@ android {
 
     signingConfigs {
         release {
-            storeFile file("../BI_on_googlecode.com/private/my-release-key.keystore")
+            storeFile file("/home/jsf/android.keystore")
             storePassword secureProperties['key.store.password']
             keyAlias "alias_name"
             keyPassword secureProperties['key.alias.password']
@@ -84,7 +85,7 @@ repositories {
     maven {
         url 'https://maven.google.com'
         // Alternative URL is 'https://dl.google.com/dl/android/maven2/'
-        url "https://jitpack.io"
+        //url "https://jitpack.io"
     }
     jcenter()
 }

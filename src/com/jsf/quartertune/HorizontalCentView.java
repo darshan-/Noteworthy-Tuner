@@ -12,12 +12,11 @@
     GNU General Public License for more details.
 */
 
-package com.darshancomputing.tuner;
+package com.jsf.quartertune;
 
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.util.AttributeSet;
 
 public class HorizontalCentView extends AbstractCentView {
     public HorizontalCentView(Context c) {

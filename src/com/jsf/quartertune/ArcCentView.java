@@ -12,13 +12,12 @@
     GNU General Public License for more details.
 */
 
-package com.darshancomputing.tuner;
+package com.jsf.quartertune;
 
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.util.AttributeSet;
 
 public class ArcCentView extends AbstractCentView {
     private static final float MAX_ANGLE = 22.0f / 180 * (float) java.lang.Math.PI;

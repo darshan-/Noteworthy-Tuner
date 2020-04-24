@@ -12,42 +12,24 @@
     GNU General Public License for more details.
 */
 
-package com.darshancomputing.tuner;
+package com.jsf.quartertune;
 
-import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.ComponentName;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
-import android.graphics.drawable.Drawable;
-import android.graphics.drawable.LayerDrawable;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
-import android.os.Messenger;
-import android.preference.CheckBoxPreference;
 import android.preference.EditTextPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
-import android.preference.PreferenceCategory;
 import android.preference.PreferenceManager;
 import android.preference.PreferenceScreen;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.WindowManager;
 import android.widget.Toast;
-
-import java.util.Locale;
 
 //import com.darshancomputing.alockblock.iab.IabHelper;
 //import com.darshancomputing.alockblock.iab.IabResult;
@@ -56,10 +38,10 @@ import java.util.Locale;
 
 
 public class SettingsActivity extends PreferenceActivity implements OnSharedPreferenceChangeListener {
-    public static final String SETTINGS_FILE = "com.darshancomputing.tuner_preferences";
+    public static final String SETTINGS_FILE = "com.jsf.quartertune_preferences";
     //public static final String SP_STORE_FILE = "sp_store";
 
-    //public static final String KEY_LARGER_BUFFER = "larger_buffer";
+//    public static final String KEY_LARGER_BUFFER = "larger_buffer";
     public static final String KEY_A4_HZ = "a4_hz";
     public static final String KEY_A4_HZ_OTHER = "a4_hz_other";
     public static final String KEY_FLAT_SHARP_HINT = "flat_sharp_hint";

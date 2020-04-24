@@ -12,22 +12,17 @@
     GNU General Public License for more details.
 */
 
-package com.darshancomputing.tuner;
+package com.jsf.quartertune;
 
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.ComponentName;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.pm.PackageManager;
-import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
-import android.database.Cursor;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
@@ -38,17 +33,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.ViewGroup;
-import android.view.ViewGroup.LayoutParams;
-import android.view.Window;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
-import android.widget.Button;
-import android.widget.CursorAdapter;
-import android.widget.FrameLayout;
-import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -223,8 +207,8 @@ public class TunerActivity extends Activity {
         //    have while sticking with normal value by default.
 
         float bufMult = 1.0f;
-        // if (settings.getBoolean(SettingsActivity.KEY_LARGER_BUFFER, false))
-        //     bufMult = 2.0f;
+//         if (settings.getBoolean(SettingsActivity.KEY_LARGER_BUFFER, false))
+//             bufMult = 2.0f;
         int bufSize = (int) (SAMPLES * bufMult);
         pp = new PitchProcessor(ALGORITHM, SAMPLE_RATE, bufSize, pdh);
         detector = new PitchDetector(SAMPLE_RATE, bufSize, 0 /* SAMPLES / 2 */, pp);
@@ -286,7 +270,7 @@ public class TunerActivity extends Activity {
         case R.id.menu_rate_and_review:
             try {
                 startActivity(new Intent(Intent.ACTION_VIEW,
-                                         Uri.parse("market://details?id=com.darshancomputing.tuner")));
+                                         Uri.parse("market://details?id=com.jsf.quartertune")));
             } catch (Exception e) {
                 Toast.makeText(this, "Sorry, can't launch Play Store!", Toast.LENGTH_SHORT).show();
             }

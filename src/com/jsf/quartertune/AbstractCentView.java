@@ -12,15 +12,12 @@
     GNU General Public License for more details.
 */
 
-package com.darshancomputing.tuner;
+package com.jsf.quartertune;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.Handler;
-import android.util.AttributeSet;
-import android.view.View;
 import android.widget.ImageView;
 
 public abstract class AbstractCentView extends ImageView {
