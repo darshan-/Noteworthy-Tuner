@@ -17,8 +17,6 @@ apply plugin: 'com.android.application'
 
 Properties secureProperties = new Properties()
 
-//secureProperties.load(new FileInputStream("secure.properties"))
-
 android {
     compileSdkVersion 28
     //buildToolsVersion "27.0.1" // With Android plugin 3.0.0+, automatically uses latest now
@@ -57,7 +55,7 @@ android {
 
     signingConfigs {
         release {
-            storeFile file("/home/jsf/android.keystore")
+            storeFile file("../android.keystore")
             storePassword secureProperties['key.store.password']
             keyAlias "alias_name"
             keyPassword secureProperties['key.alias.password']
