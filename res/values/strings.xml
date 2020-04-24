@@ -18,19 +18,16 @@
   <string formatted="false" name="help_cat_version">Version</string>
 
   <string formatted="false" name="help_cat_changelog">Changelog</string>
-  <string formatted="false" name="help_changelog">
-    Quartertune is based on the Noteworthy Tuner. Please see the <a href="http://www.noteworthytuner.com/changelog">online Changelog</a>.
+  <string formatted="false" name="help_changelog">Quartertune is based on the Noteworthy Tuner. Please see the <a href="http://www.noteworthytuner.com/changelog">online Changelog</a>.
   </string>
 
   <string formatted="false" name="help_cat_faq">Frequently Asked Questions</string>
-  <string formatted="false" name="help_faq">
-   There are currently no FAQs available for Quartertune.
+  <string formatted="false" name="help_faq">There are currently no FAQs available for Quartertune.
     FAQs for the original Noteworthy Tuner can be found <a href="http://www.noteworthytuner.com/faq">here</a>.
   </string>
 
   <string formatted="false" name="help_cat_website">Website</string>
-  <string formatted="false" name="help_website">
-    My website is <a>https://jsfalk.com</a>.
+  <string formatted="false" name="help_website">My website is <a href="https://jsfalk.com">jsfalk.com</a>.
     Information about the original Noteworthy Tuner is available at <a href="http://www.noteworthytuner.com/">its website</a>.
   </string>
 
@@ -46,8 +43,7 @@
   </string-->
 
   <string formatted="false" name="help_cat_no_warranty">No Warranty</string>
-  <string formatted="false" name="help_no_warranty">
-    This software is distributed in the hope that it will be useful, but
+  <string formatted="false" name="help_no_warranty">This software is distributed in the hope that it will be useful, but
     WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n
 
@@ -109,8 +105,7 @@
   <string formatted="false" name="pref_flat_sharp_hint">Flat/sharp hint</string>
 
   <string formatted="false" name="pref_cat_support_dev">Support development</string>
-  <string formatted="false" name="pref_support_dev_blurb">
-    Both this app and the original Noteworthy App are ad-free with all features included.
+  <string formatted="false" name="pref_support_dev_blurb">Both this app and the original Noteworthy App are ad-free with all features included.
     Please consider supporting the developer of the original Noteworthy App by purchasing
     the Pro version of their other app, BatteryBot.  (It\'s also open source and ad free!)
   Thanks!
