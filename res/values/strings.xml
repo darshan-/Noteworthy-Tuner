@@ -18,7 +18,7 @@
   <string formatted="false" name="help_cat_version">Version</string>
 
   <string formatted="false" name="help_cat_changelog">Changelog</string>
-  <string formatted="false" name="help_changelog">A Changelog is available <a href="https://github.com/jsfalk/Quartertune/CHANGELOG.md">here</a>.
+  <string formatted="false" name="help_changelog">A Changelog is available <a href="https://github.com/jsfalk/Quartertune/blob/master/CHANGELOG.md">here</a>.
   </string>
 
   <string formatted="false" name="help_cat_faq">Frequently Asked Questions</string>
