@@ -9,7 +9,7 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.4.2'
+        classpath 'com.android.tools.build:gradle:4.1.0'
     }
 }
 
@@ -19,12 +19,12 @@ Properties secureProperties = new Properties()
 secureProperties.load(new FileInputStream("secure.properties"))
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 30
     //buildToolsVersion "27.0.1" // With Android plugin 3.0.0+, automatically uses latest now
 
     defaultConfig {
         minSdkVersion 11
-        targetSdkVersion 28
+        targetSdkVersion 30
 
         vectorDrawables.useSupportLibrary = false
 
