@@ -9,20 +9,22 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:4.1.0'
+        classpath 'com.android.tools.build:gradle:3.4.2'
     }
 }
 
 apply plugin: 'com.android.application'
 
+Properties secureProperties = new Properties()
+secureProperties.load(new FileInputStream("secure.properties"))
 
 android {
-    compileSdkVersion 30
+    compileSdkVersion 28
     //buildToolsVersion "27.0.1" // With Android plugin 3.0.0+, automatically uses latest now
 
     defaultConfig {
         minSdkVersion 11
-        targetSdkVersion 30
+        targetSdkVersion 28
 
         vectorDrawables.useSupportLibrary = false
 
@@ -54,7 +56,10 @@ android {
 
     signingConfigs {
         release {
-
+            storeFile file("../BI_on_googlecode.com/private/my-release-key.keystore")
+            storePassword secureProperties['key.store.password']
+            keyAlias "alias_name"
+            keyPassword secureProperties['key.alias.password']
         }
     }
 
