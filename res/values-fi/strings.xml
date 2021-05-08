@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string formatted="false" name="app_full_name">Noteworthy Tuner</string>
+  <string formatted="false" name="app_launcher_name">Noteworthy</string>
+  <string formatted="false" name="mic_unavailable_title">Mikrofoni ei ole käytettävissä</string>
+  <string formatted="false" name="mic_unavailable_message">Toinen
+  sovellus käyttää mikrofonia (esim. puhelin, toinen viritin, äänitallennin tai vastaava).\n
+
+  \nSulje toinen sovellus ja yritä uudelleen.
+  </string>
+  <string formatted="false" name="okay">Selvä</string>
+  <string formatted="false" name="need_mic_permission">Noteworthy Tuner tarvitsee pääsyn mikrofoniin!</string>
+
+  <string formatted="false" name="menu_settings">Asetukset</string>
+  <string formatted="false" name="menu_help">Tietoja</string>
+  <string formatted="false" name="menu_rate_and_review">Arvostele</string>
+
+  <string formatted="false" name="help_cat_version">Versio</string>
+
+  <string formatted="false" name="help_cat_changelog">Muutosloki</string>
+  <string formatted="false" name="help_changelog">
+    Katso <a href="http://www.noteworthytuner.com/changelog">muutosloki</a>.
+  </string>
+
+  <string formatted="false" name="help_cat_faq">Usein kysytyt kysymykset</string>
+  <string formatted="false" name="help_faq">
+    Katso <a href="http://www.noteworthytuner.com/faq">usein kysytyt kysymykset</a>.
+  </string>
+
+  <string formatted="false" name="help_cat_website">Verkkosivu</string>
+  <string formatted="false" name="help_website">Lisätietoja
+    saatavilla <a href="http://www.noteworthytuner.com/">Noteworthy Tunerin verkkosivustolla</a>.
+  </string>
+
+  <string formatted="false" name="help_cat_open_source">Avoin lähdekoodi</string>
+  <string formatted="false" name="help_open_source">Tämä
+    on avoimen lähdekoodin projekti, joten voit ladata <a href="http://www.noteworthytuner.com/sourcecode">lähdekoodin</a>.
+  </string>
+
+  <!--string formatted="false" name="help_cat_donate">Donate</string>
+  <string formatted="false" name="help_donate">Please
+    consider donating by upgrading to the <a href="market://details?id=com.darshancomputing.BatteryIndicatorPro">Pro
+    Version</a>.
+  </string-->
+
+  <string formatted="false" name="help_cat_no_warranty">Ei takuuta</string>
+  <string formatted="false" name="help_no_warranty">
+    This software is distributed in the hope that it will be useful, but
+    WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n
+
+    \nWhile I do my best to make sure that it works well and does not
+    cause problems, I am not responsible for any damage or inconvenience
+    it may cause under any circumstance.
+  </string>
+
+  <!--string formatted="false" name="help_cat_acknowledgments">Acknowledgments</string>
+  <string formatted="false" name="help_acknowledgments">This
+    app would only be available in English without the generous
+    assistance of the volunteer translators.  Thanks!\n
+
+    \nMany thanks are due to Google and all of the open-source coders
+    who made the Android platform and this app possible.\n
+
+    \nThe launcher icon (the upright battery you see in the Market) is
+    based on an icon from <a href="http://www.oxygen-icons.org">the
+    Oxygen icon theme</a> and used under the
+    <a href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Common
+      Attribution-ShareAlike 3.0 License</a>.
+  </string>
+
+  <string formatted="false" name="help_cat_translations">Translations</string>
+  <string formatted="false" name="help_translations">I
+    need help translating this app to new languages and maintaining
+    the existing translations.  If you would like to help, please send
+    me an <a href="mailto:support%2Btranslations@noteworthytuner.com">email</a>.
+    Please let me know if and how you would like your name listed in
+    this section in acknowledgment of your assistance.
+  </string>
+
+  <string formatted="false" name="help_subcat_translators">Translators</string-->
+
+  <string formatted="false" name="help_cat_contact">Yhteystiedot</string>
+  <string formatted="false" name="help_contact">Jos
+    sinulla on kysymys, ongelma tai kommentti, laita
+    <a href="mailto:support@noteworthytuner.com">sähköpostia</a>.
+  </string>
+
+  <string formatted="false" name="settings_activity_subtitle">Asetukset</string>
+
+  <string formatted="false" name="currently_set_to">"Asetettu: "</string>
+  <string formatted="false" name="currently_disabled">Poissa käytöstä</string>
+
+  <!--string formatted="false" name="pref_larger_buffer">Use larger buffer</string>
+  <string formatted="false" name="pref_larger_buffer_summary_default">Using default buffer size</string>
+  <string formatted="false" name="pref_larger_buffer_summary_larger">Using larger buffer:
+  Needle responds more slowly, better at detecting very low pitches
+  </string-->
+
+  <string formatted="false" name="pref_cat_a4">A4 vire</string>
+
+  <string formatted="false" name="pref_a4_hz">A4 vire</string>
+  <string formatted="false" name="pref_a4_hz_other">Muu A4 vire</string>
+
+  <string formatted="false" name="pref_cat_beginners">Aloittelijoille</string>
+
+  <string formatted="false" name="pref_flat_sharp_hint">Liian matala/korkea vihjeet</string>
+
+  <string formatted="false" name="pref_cat_support_dev">Tue kehitystä</string>
+  <string formatted="false" name="pref_support_dev_blurb">Olen valinnut
+  pitää kaikki nämä vaihtoehdot kaikkien käyttäjien saatavilla ilmaiseksi,
+  ilman rajoituksia ja mainoksia. Harkitse tämän avoimen lähdekoodin
+  ohjelman kehityksen tukemista ostamalla Pro-versio toisesta
+  sovelluksestani, BatteryBotista. (Se on myös avointa lähdekoodia ja mainokseton!)
+  Kiitos!
+  </string>
+  <string formatted="false" name="get_batterybot_b">Hanki BatteryBot Pro</string>
+</resources>
