@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              style="@style/main_theme"
               android:id="@+id/home_wrapper"
               android:orientation="vertical"
               android:layout_width="fill_parent"

@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2009-2015 Darshan Computing, LLC
+    Copyright (c) 2009-2021 Darshan Computing, LLC
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -14,7 +14,6 @@
 
 package com.darshancomputing.tuner;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
@@ -24,7 +23,10 @@ import android.text.util.Linkify;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-public class HelpActivity extends Activity {
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+
+public class HelpActivity extends AppCompatActivity {
     private static final int[] HAS_LINKS = {R.id.changelog, R.id.faq, R.id.website,
                                             R.id.open_source, /*R.id.donate, R.id.acknowledgments,
                                             R.id.translations, */ R.id.contact};
@@ -33,10 +35,11 @@ public class HelpActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // Stranglely disabled by default for API level 14+
-        if (android.os.Build.VERSION.SDK_INT >= 14) {
-            getActionBar().setHomeButtonEnabled(true);
-            getActionBar().setDisplayHomeAsUpEnabled(true);
+        ActionBar ab = getSupportActionBar();
+        if (ab != null) {
+            ab.setHomeButtonEnabled(true);
+            ab.setDisplayHomeAsUpEnabled(true);
+            ab.setElevation(0);
         }
 
         setContentView(R.layout.help);

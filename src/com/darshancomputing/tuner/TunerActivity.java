@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2015-2017 Darshan Computing, LLC
+    Copyright (c) 2015-2021 Darshan Computing, LLC
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -14,7 +14,6 @@
 
 package com.darshancomputing.tuner;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.ComponentName;
@@ -52,13 +51,16 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+
 import be.tarsos.dsp.AudioEvent;
 import be.tarsos.dsp.pitch.PitchDetectionHandler;
 import be.tarsos.dsp.pitch.PitchDetectionResult;
 import be.tarsos.dsp.pitch.PitchProcessor;
 import be.tarsos.dsp.pitch.PitchProcessor.PitchEstimationAlgorithm;
 
-public class TunerActivity extends Activity {
+public class TunerActivity extends AppCompatActivity {
     private SharedPreferences settings;
     private SharedPreferences sp_store;
 
@@ -111,6 +113,11 @@ public class TunerActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        ActionBar ab = getSupportActionBar();
+        if (ab != null)
+            ab.setElevation(0);
+
         setContentView(R.layout.home_wrapper);
 
         res = getResources();
